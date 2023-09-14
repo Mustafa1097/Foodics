@@ -1,6 +1,6 @@
-package UI.Pages;
+package Testing.Pages;
 
-import UI.stepDefs.Hooks;
+import Testing.stepDefs.Hooks;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -35,18 +35,13 @@ public class pageBase {
                     stoppingCondition = false;
                     break;
                 }
-
             } catch (org.openqa.selenium.NoSuchElementException e) {
                 counter++;
                 JavascriptExecutor js = (JavascriptExecutor) Hooks.driver;
                 js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-                continue;
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
-
-
     }
-
 }

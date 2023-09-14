@@ -1,6 +1,8 @@
 package APis;
+import com.fasterxml.jackson.databind.JsonNode;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -32,6 +34,7 @@ public class LoginAPITest {
             String actualToken = response.jsonPath().get("token");
             int statusCode = response.getStatusCode();
             soft.assertEquals(statusCode,200);
+            System.out.println(actualToken);
 
         }
 
@@ -92,6 +95,20 @@ public class LoginAPITest {
         System.out.println("The status code is : "+statusCode);
 
     }
+    @Test
+    public void test() {
+            Response response = given()
+                .contentType(ContentType.JSON)
+                .get("/cp_internal/whoami");
+
+        int statusCode = response.getStatusCode();
+        Assert.assertEquals(statusCode,200);
+        System.out.println("The status code is : "+statusCode);
+        // I'm getting an HTML response of login page when i call this api
+        System.out.println(response.getBody().asString());
+
+    }
+
     }
 
 

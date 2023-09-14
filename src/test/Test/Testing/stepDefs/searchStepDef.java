@@ -1,10 +1,10 @@
-package UI.stepDefs;
+package Testing.stepDefs;
 
-import UI.Pages.pageBase;
+import Testing.Pages.pageBase;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
-import UI.Pages.GooglePage;
+import Testing.Pages.GooglePage;
 import org.testng.Assert;
 
 
@@ -19,9 +19,9 @@ public class searchStepDef extends pageBase {
     }
 
 
-    @When("user types in google search bar")
-    public void userTypesInGoogleSearchBar() throws InterruptedException {
-        google.getSearchBar().sendKeys("foodics");
+    @When("user types in google search bar {string}")
+    public void userTypesInGoogleSearchBar(String data) throws InterruptedException {
+        google.getSearchBar().sendKeys(data);
     }
 
     @And("user removes the typed word")
@@ -29,15 +29,14 @@ public class searchStepDef extends pageBase {
         google.getSearchBar().clear();
     }
 
-    @And("user types a new word")
-    public void userTypesANewWord() throws InterruptedException {
-        google.getSearchBar().sendKeys("league of legends");
+    @And("user types a new word {string}")
+    public void userTypesANewWord(String data2) throws InterruptedException {
+        google.getSearchBar().sendKeys(data2);
     }
 
     @And("user clicks submit")
     public void userClicksSubmit() throws InterruptedException {
         google.getSearchBar().submit();
     }
-
 
 }
